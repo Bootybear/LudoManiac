@@ -26,7 +26,6 @@ namespace LudoManiac
         public Game()
         {
             CreatePlayer();
-
         }
 
         public void CreatePlayer()
@@ -35,6 +34,7 @@ namespace LudoManiac
             List<string> player = new List<string>();
             Console.WriteLine("Hvor mange spillere? (1-4):");
             spillerMaengde = Int32.Parse(Console.ReadLine());
+            Console.Clear();
 
             while (spillerMaengde > 0 && spillerMaengde <= 4)
             {
@@ -43,6 +43,7 @@ namespace LudoManiac
                     Console.WriteLine("Hvad hedder spiller " + i + "?:");
                     playerName = Console.ReadLine();
                     player.Add(playerName);
+                    Console.Clear();
                     //Console.ReadLine();
                 }
 

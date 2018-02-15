@@ -12,29 +12,40 @@ namespace LudoManiac
 
     public class Game
     {
+        //Global stuff
+        public int i;
+
+        //Player related
         public string playerName { get; set; }
         public string GameColor;
         public int spillerMaengde;
-        public int i;
-        public string playerOne;
-        public string name;
+        public List<string> player = new List<string>();
 
-        private Dice dice = new Dice();
-        //private Player hejsa = new Player();
-        
+        //Dice related
+       
+
+
         //Starts a new game
         public Game()
         {
+            WriteLudo("");
             CreatePlayer();
         }
 
+        public void WriteLudo(string txt)
+        {
+            Console.Clear();
+            string textToEnter = "------ LUDO ------";
+            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+        }
+
+
+
         public void CreatePlayer()
         {
-
-            List<string> player = new List<string>();
             Console.WriteLine("Hvor mange spillere? (1-4):");
             spillerMaengde = Int32.Parse(Console.ReadLine());
-            Console.Clear();
+            WriteLudo("");
 
             while (spillerMaengde > 0 && spillerMaengde <= 4)
             {
@@ -43,9 +54,9 @@ namespace LudoManiac
                     Console.WriteLine("Hvad hedder spiller " + i + "?:");
                     playerName = Console.ReadLine();
                     player.Add(playerName);
-                    Console.Clear();
-                    //Console.ReadLine();
+                    WriteLudo("");
                 }
+                
 
                 switch (spillerMaengde)
                 {
@@ -53,7 +64,6 @@ namespace LudoManiac
                         Console.WriteLine("Spiller 1's navn er: " + player[0]);
                         Console.ReadLine();
                         break;
-
                     case 2:
                         Console.WriteLine("Spiller 1's navn er: " + player[0]);
                         Console.WriteLine("Spiller 2's navn er: " + player[1]);
@@ -78,9 +88,9 @@ namespace LudoManiac
                         spillerMaengde = Int32.Parse(Console.ReadLine());
                         break;
                 }
+                
                 break;
             }
         }
     }
 }
-

@@ -14,31 +14,46 @@ namespace LudoManiac
     {
         //Global stuff
         public int i;
+        public GameState state;
 
         //Player related
         public string playerName { get; set; }
+        public GameState InPlay { get; set; }
+
         public string GameColor;
         public int spillerMaengde;
         public List<string> player = new List<string>();
+        public int Turns;
 
         //Dice related
-       
-
+        private Random rng = new Random();
+        private int diceValue;
+        
 
         //Starts a new game
         public Game()
         {
             WriteLudo("");
             CreatePlayer();
+            PlayerTurn();
+            Dice();
+            ThrowDice();
         }
 
         public void WriteLudo(string txt)
         {
+            this.state = GameState.InPlay;
             Console.Clear();
+            Console.WriteLine(Turns);
             string textToEnter = "------ LUDO ------";
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
         }
 
+        public int Dice()
+        {
+            this.diceValue = this.rng.Next(1, 7);
+            return this.diceValue;
+        }
 
 
         public void CreatePlayer()
@@ -92,5 +107,33 @@ namespace LudoManiac
                 break;
             }
         }
+
+        public int PlayerTurn()
+        {
+            Turns = 1;
+            switch (Turns)
+            {
+                case 1:
+                    Console.WriteLine("It is player " + player[0] + "'s turn");
+                    break;
+                case 2:
+                    Console.WriteLine("It is player " + player[1] + "'s turn");
+                    break;
+                case 3:
+                    Console.WriteLine("It is player " + player[2] + "'s turn");
+                    break;
+                case 4:
+                    Console.WriteLine("It is player " + player[3] + "'s turn");
+                    break;
+            }
+            return 1;
+        }
+
+        public int ThrowDice()
+        {
+            return 1;
+        }
+
+
     }
 }
